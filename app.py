@@ -634,9 +634,30 @@ def orders():
     else:
         return redirect('userlogin')
 
-@app.route('/contactus')
+@app.route('/contactus',methods=['GET','POST'])
 def contactus():
-    return render_template('contact.html')
+    if session.get('user'):
+        if request.method=='POST':
+            email=request.form['email']
+            description=request.form['description']
+            title=request.form['title']
+            
+            try:
+                cursor=mydb.cursor(buffered=True)
+                cursor.execute('insert into contactus(name,email,message) values(%s,%s,%s)',[email,title,description])
+                mydb.commit()
+            except Exception as e:
+                print(f"Error in inserting review:{e}")
+                flash('cant add  please try after some time')
+                return redirect(url_for('index'))
+            else:
+                cursor.close()
+                flash('submitted')
+                return redirect(url_for('index'))
+        else:
+            return render_template('contact.html')
+    else:
+        return redirect(url_for('userlogin'))
 
 @app.route('/addreview/<itemid>',methods=['GET','POST'])
 def addreview(itemid):

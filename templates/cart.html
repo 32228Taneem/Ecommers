@@ -63,9 +63,9 @@
                 <div class="col-12">
                     <form method="POST" action="{{url_for('pay',itemid=i,name=items[i][0],price=items[i][1])}}">
                         <div class="card m-5" style="width: 18rem;">
-                            <a href="#"><img src="/static/{{items[i][3]}}" class="card-img-top" alt="ntg"></a>
+                            <a href="{{url_for('description',itemid=i[0])}}"><img src="/static/{{items[i][3]}}" class="card-img-top" alt="ntg"></a>
                             <div class="card-body">
-                                <a href="#">
+                                <a href="{{url_for('description',itemid=i[0])}}">
                                     <h5 class="card-title">Name:{{items[i][0]}}</h5>
                                 </a>
                                 <h6 class="card-id"></h6>
