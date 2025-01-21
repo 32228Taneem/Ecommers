@@ -61,7 +61,7 @@
             {% for i in items %}
             <div class="row">
                 <div class="col-12">
-                    <form method="POST" action="{{url_for('pay',itemid=i,name=items[i][0],price=items[i][1])}}">
+                    <form method="POST" action="#">
                         <div class="card m-5" style="width: 18rem;">
                             <a href="{{url_for('description',itemid=i[0])}}"><img src="/static/{{items[i][3]}}" class="card-img-top" alt="ntg"></a>
                             <div class="card-body">

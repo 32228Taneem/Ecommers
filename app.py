@@ -4,7 +4,7 @@ from cmail import sendmail
 from tokens import encode,decode
 import os
 import re
-import razorpay
+#import razorpay
 import mysql.connector
 # mydb=mysql.connector.connect(host='localhost',user='root',password='Taneem_2002',db='ecommi')
 user=os.environ.get('RDS_USERNAME')
@@ -29,7 +29,7 @@ app.config['SESSION_TYPE']='filesystem'
 app.secret_key='ecom$tan111'
 RAZORPAY_KEY_ID='rzp_test_BdYxoi5GaEITjc'
 RAZORPAY_KEY_SECRET='H0FUH2n4747ZSYBRyCn2D6rc'
-client=razorpay.Client(auth=(RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET))
+#client=razorpay.Client(auth=(RAZORPAY_KEY_ID,RAZORPAY_KEY_SECRET))
 
 @app.route('/')
 def home():
@@ -569,7 +569,7 @@ def removecart_item(itemid):
         flash('item removes sussfully from cart')
         return redirect(url_for('viewcart'))
 
-@app.route('/pay/<itemid>/<name>/<float:price>',methods=['GET','POST'])
+'''@app.route('/pay/<itemid>/<name>/<float:price>',methods=['GET','POST'])
 def pay(itemid,name,price):
     try :
         qyt=int(request.form['qyt'])
@@ -616,7 +616,7 @@ def success():
         # return 'success'
         return redirect(url_for('orders'))
     except razorpay.errors.SignatureVerificationError:
-        return 'Pay verification failes',400
+        return 'Pay verification failes',400'''
 
 @app.route('/orders')
 def orders():
